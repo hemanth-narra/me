@@ -1,0 +1,417 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  background: var(--bgColor);
+  --liteColor: white;
+  --liteText: #777;
+  --darkColor: black;
+  --darkText: #aaa;
+  --mintColor: #c7fcee;
+  --mintText: #5f8c80;
+  --purpColor: #cfc7fc;
+  --purpText: #7166af;
+  --yellColor: #fcfcbf;
+  --yellText: #8c8c5f;
+  --pinkColor: #fca9d6;
+  --pinkText: #7f556c;
+  --blueColor: #ade3ff;
+  --blueText: #46748c;
+}
+@media (prefers-color-scheme: light) {
+  body {
+    --bgColor: white;
+    --textColor: #777;
+    --iconColor: black;
+    --boldColor: black;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    --bgColor: black;
+    --iconColor: white;
+    --textColor: #aaa;
+    --boldColor: white;
+  }
+}
+body.lite-mode {
+  --bgColor: white;
+  --textColor: #777;
+  --iconColor: black;
+  --boldColor: black;
+}
+body.dark-mode {
+  --bgColor: black;
+  --iconColor: white;
+  --textColor: #aaa;
+  --boldColor: white;
+}
+body.mint-mode {
+  --bgColor: #c7fcee;
+  --iconColor: #486b61;
+  --textColor: #5f8c80;
+  --boldColor: #10352b;
+}
+body.purp-mode {
+  --bgColor: #cfc7fc;
+  --iconColor: #5a518c;
+  --textColor: #7166af;
+  --boldColor: #312c4c;
+}
+body.yell-mode {
+  --bgColor: #fcfcbf;
+  --iconColor: #54543f;
+  --textColor: #8c8c5f;
+  --boldColor: #353528;
+}
+body.pink-mode {
+  --bgColor: #fca9d6;
+  --iconColor: #54543f;
+  --textColor: #6b5260;
+  --boldColor: #513645;
+}
+body.blue-mode {
+  --bgColor: #ade3ff;
+  --iconColor: #394b54;
+  --textColor: #46748c;
+  --boldColor: #242f35;
+}
+
+.main {
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+.main > * {
+  position: relative;
+}
+.main > canvas#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.main .text-container {
+  text-align: left;
+  max-width: 50rem;
+  margin: auto auto auto 13vw;
+}
+.main h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0 0 2rem;
+  color: var(--boldColor);
+}
+.main h3 {
+  margin: 1rem 0 0;
+  font-size: 1.7rem;
+  line-height: 1.4;
+  font-weight: normal;
+  color: var(--textColor);
+}
+.main em {
+  color: var(--boldColor);
+  font: inherit;
+}
+.main h3 a {
+  color: var(--boldColor);
+  text-decoration: none;
+  border-bottom: 0.2rem solid transparent;
+  white-space: nowrap;
+  position: relative;
+}
+.main h3 a:before, .main h3 a:after {
+  content: "";
+  bottom: 0.4rem;
+  left: 0;
+  width: 100%;
+  height: 0.1rem;
+  background: var(--boldColor);
+  position: absolute;
+  opacity: 0.04;
+  transition: all 0.2s ease;
+}
+.main h3 a:before {
+  transform: scaleX(0);
+  transform-origin: center left;
+}
+.main h3 a:after {
+  opacity: 0.1;
+}
+.main h3 a:hover:before {
+  transform: scaleX(1);
+  opacity: 0.2;
+}
+.main h3 button {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.main .contact-methods {
+  display: flex;
+  margin-left: -1.5rem;
+  margin-top: 1rem;
+}
+.main .contact-methods a.contact-method {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  overflow: visible;
+  width: 4rem;
+  height: 4rem;
+}
+.main .contact-methods a.contact-method i {
+  color: var(--iconColor);
+}
+.main .contact-methods a.contact-method p {
+  position: absolute;
+  top: 90%;
+  left: -100rem;
+  right: -100rem;
+  margin: 0 auto;
+  width: max-content;
+  opacity: 0;
+  transition: all 0.2s ease;
+  color: var(--iconColor);
+  font-size: 0.85rem;
+}
+.main .contact-methods a.contact-method:hover p {
+  opacity: 1;
+}
+.main .contact-methods a.contact-method:last-child p {
+  left: auto;
+  right: 1.5rem;
+  margin: 0;
+}
+.main .contact-methods a.contact-method:first-child p {
+  left: 1.5rem;
+  right: auto;
+  margin: 0;
+}
+.main .contact-methods i {
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  position: relative;
+}
+.main .contact-methods i:before {
+  position: relative;
+  z-index: 10;
+}
+.main .contact-methods i:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.7);
+  content: "";
+  transition: all 0.2s ease;
+  background: #333;
+}
+.main .contact-methods i.email {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  display: block;
+}
+.main .contact-methods i.email:before {
+  content: "@";
+  font-style: normal;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+}
+.main button.change-color-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  font: inherit;
+  color: inherit;
+  border: none;
+  border-radius: 100rem;
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+  line-height: 3rem;
+  padding: 0;
+  background: var(--textColor);
+  color: var(--bgColor);
+  cursor: pointer;
+}
+.main button.change-color-button:hover {
+  background: var(--boldColor);
+}
+.main dialog.change-color-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: var(--bgColor);
+  background: var(--textColor);
+  padding: 2rem;
+  border: 0;
+  border-radius: 0 0 0.25rem 0.25rem;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow: scroll;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3), 0 0.15rem 1rem rgba(0, 0, 0, 0.1);
+  font-size: 1.33rem;
+  opacity: 0;
+  transform: translateY(-10%);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  display: block;
+}
+.main dialog.change-color-dialog[open] {
+  opacity: 1;
+  transform: translateY(0%);
+  pointer-events: all;
+}
+.main dialog.change-color-dialog h4 {
+  margin: 0 0 1rem;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+.main dialog.change-color-dialog form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.main dialog.change-color-dialog form input[type=button], .main dialog.change-color-dialog form input[type=submit] {
+  font: inherit;
+  color: inherit;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin: 1rem 0.5rem 0;
+  color: var(--textColor);
+  background: var(--bgColor);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.main dialog.change-color-dialog form input[type=button]:hover, .main dialog.change-color-dialog form input[type=submit]:hover {
+  color: var(--boldColor);
+}
+.main dialog.change-color-dialog .radio-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.main dialog.change-color-dialog .radio-buttons > div {
+  margin: 0.5rem 0;
+}
+.main dialog.change-color-dialog .radio-buttons > div input {
+  display: none;
+}
+.main dialog.change-color-dialog .radio-buttons > div label div {
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  margin: 0 0.25rem 0 0.75rem;
+  line-height: 2rem;
+  text-align: center;
+  border: 0.5rem solid var(--textColor);
+  background-clip: padding-box;
+}
+.main dialog.change-color-dialog .radio-buttons > div input:checked + label div {
+  border: 0;
+}
+.main dialog.change-color-dialog[open] + button.change-color-button {
+  transition: all 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 69rem), (orientation: portrait) {
+  .main > .text-container {
+    margin: auto;
+    padding: 2rem;
+  }
+}
+@media (max-width: 30rem) {
+  dialog.change-color-dialog br {
+    display: none;
+  }
+  .main > .text-container h1 {
+    font-size: 3rem;
+  }
+  .main > .text-container h3 {
+    font-size: 1.5rem;
+  }
+  .main .contact-methods {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+}
+.clapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10rem;
+  line-height: 10rem;
+  text-align: center;
+  z-index: 100000;
+  font-size: 5rem;
+  pointer-events: none;
+  transition: none;
+  opacity: 0;
+  color: var(--boldColor);
+}
+
+.clapper.clapping {
+  animation: clap 1s ease-in-out;
+}
+
+@keyframes clap {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion) {
+  canvas#bg {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
