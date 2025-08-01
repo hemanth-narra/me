@@ -14,6 +14,24 @@
 	<link rel="stylesheet" type="text/css" href="fonts/css/fontawesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="icon" href="fonts/circle_h_icon_199375.ico" type="image/x-icon">
+	<style>
+		.form-button {
+			display: inline-block;
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 24px;
+			font-size: 16px;
+			border: none;
+			border-radius: 8px;
+			text-decoration: none;
+			margin-top: 25px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			transition: background-color 0.3s ease;
+		}
+		.form-button:hover {
+			background-color: #3f9e46;
+		}
+	</style>
 </head>
 <body>
 <section id="home" class="main">
@@ -25,7 +43,10 @@
 		<h3>No jargon. No stress. Just clean, honest work that gets done.</h3>
 		<h3>Need something sorted? Let’s talk 👇</h3>
 
-		<div class="contact-methods">
+		<!-- Connect Button -->
+		<a href="https://forms.gle/YOUR_FORM_LINK_HERE" target="_blank" class="form-button">Connect Now</a>
+
+		<div class="contact-methods" style="margin-top: 30px;">
 			<a href="https://open.spotify.com/user/31c62w7hqkaofnjc4g5xat64ytsi" class="contact-method" aria-label="Spotify" rel="me" target="_blank">
 				<i class="fab fa-spotify"></i>
 				<p class="detail">Work Vibes 🎧</p>
@@ -71,3 +92,4 @@
 <script src="fonts/attribution.js"></script>
 </body>
 </html>
+
