@@ -1,7 +1,10 @@
 const canvas = document.querySelector('canvas#bg');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+}
+resizeCanvas();
 
 const ctx = canvas.getContext('2d');
 const FILL_STYLES = {
@@ -15,10 +18,7 @@ if(colorMode) {
 	document.body.setAttribute('class', colorMode);
 }
 
-addEventListener('resize', () => {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-});
+addEventListener('resize', resizeCanvas);
 
 function isDarkMode() {
 	return document.body.classList.contains('dark-mode') || 
@@ -28,15 +28,8 @@ function isDarkMode() {
 function Point() {
 	const r = 8;
 	
-	// progress below 0 is neglected, negative initial
-	// progress serves to introduce random delays - 
-	// at 0.05 progress points per second, for example
-	// a dot with initial progress -0.15 will run 2 frames
-	// after a dot with initial progress -0.05
 	const initialProgress = -4 * Math.random();
 	
-	// moves point to a random location and 
-	// resets its progress
 	this.init = function() {
 		this.progress = initialProgress;
 		this.x = Math.random() * canvas.width;
@@ -49,19 +42,11 @@ function Point() {
 		if(this.progress >= 0) {
 			ctx.fillStyle = isDarkMode() ? FILL_STYLES.dark : FILL_STYLES.light;
 			ctx.beginPath();
-			// radius calculation: maps progress from [0, 1] to [0, pi],
-			// then takes sine of that to get an increase, then decrease
-			// in radius. absolute value to prevent floating point errors
-			// accidentally causing negative sine values which cause ctx.arc
-			// to throw errors
 			ctx.arc(this.x, this.y, Math.abs(Math.sin(Math.PI*this.progress)*r), 0, 2*Math.PI);
 			ctx.fill();
 		}
 	};
 	this.render = function() {
-		// stars come faster than they go
-		// so user can look at them longer
-		// i guess? idk this just looked pretty
 		if(this.progress > 0.5) this.progress += 0.005;
 		else this.progress += 0.05;
 		this.draw();
@@ -90,23 +75,97 @@ function loop() {
 
 loop();
 
-// slight convenience: fix the header section with my correct age automatically
+// ============================================
+// NAVBAR SCROLL BEHAVIOR
+// ============================================
 
-// const birthday = {
-// 	date: 19,
-// 	month: 0,
-// 	year: 2001,
-// }
-// const today = new Date();
-// let age = today.getFullYear() - birthday.year;
-// if(today.getMonth() < birthday.month || (today.getMonth() == birthday.month && today.getDate() < birthday.date)) {
-// 	--age;
-// }
-// const tens = ['', ' ten plus', ' twenty', ' thirty', ' forty', ' fifty', ' sixty', ' seventy', 'n eighty', ' ninety'];
-// const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-// document.querySelector('.description').textContent = `a${tens[Math.floor(age / 10)]} ${ones[age % 10]} year-old`;
+const navbar = document.getElementById('navbar');
 
-// easter egg
+function updateNavbar() {
+	if (window.scrollY > 50) {
+		navbar.classList.add('scrolled');
+	} else {
+		navbar.classList.remove('scrolled');
+	}
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+updateNavbar();
+
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
+
+const menuBtn = document.querySelector('.nav-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+	menuBtn.addEventListener('click', () => {
+		navLinks.classList.toggle('open');
+		const icon = menuBtn.querySelector('i');
+		if (navLinks.classList.contains('open')) {
+			icon.className = 'fas fa-times';
+		} else {
+			icon.className = 'fas fa-bars';
+		}
+	});
+
+	// Close menu when a link is clicked
+	navLinks.querySelectorAll('a').forEach(link => {
+		link.addEventListener('click', () => {
+			navLinks.classList.remove('open');
+			menuBtn.querySelector('i').className = 'fas fa-bars';
+		});
+	});
+}
+
+// ============================================
+// SERVICE CARD EXPAND / COLLAPSE
+// ============================================
+
+document.querySelectorAll('.service-card').forEach(card => {
+	const header = card.querySelector('.card-header');
+	header.addEventListener('click', () => {
+		// Close other open cards
+		document.querySelectorAll('.service-card.expanded').forEach(openCard => {
+			if (openCard !== card) {
+				openCard.classList.remove('expanded');
+			}
+		});
+		card.classList.toggle('expanded');
+	});
+});
+
+// ============================================
+// SCROLL ANIMATIONS (IntersectionObserver)
+// ============================================
+
+const observerOptions = {
+	threshold: 0.1,
+	rootMargin: '0px 0px -50px 0px'
+};
+
+const scrollObserver = new IntersectionObserver((entries) => {
+	entries.forEach((entry, index) => {
+		if (entry.isIntersecting) {
+			// Stagger the animation for each card
+			const card = entry.target;
+			const cardIndex = Array.from(document.querySelectorAll('.service-card')).indexOf(card);
+			setTimeout(() => {
+				card.classList.add('visible');
+			}, cardIndex * 100);
+			scrollObserver.unobserve(card);
+		}
+	});
+}, observerOptions);
+
+document.querySelectorAll('.service-card').forEach(card => {
+	scrollObserver.observe(card);
+});
+
+// ============================================
+// COLOR EASTER EGGS (existing)
+// ============================================
 
 const sequences = [
 	'YELL',
@@ -129,7 +188,8 @@ function changeColor(word) {
 	clapper.classList.toggle('clapping');
 	setTimeout(() => {
 		document.body.setAttribute('class', `${word.toLowerCase()}-mode`);
-		document.querySelector(`#change-color-to-${word}`).checked = true;
+		const radio = document.querySelector(`#change-color-to-${word}`);
+		if (radio) radio.checked = true;
 		setTimeout(() => clapper.classList.toggle('clapping'), 500);
 	}, 500);
 }
@@ -194,8 +254,3 @@ document.querySelector('#color-change-save').addEventListener('click', () => {
 function among() {
 	alert('haha among us');
 }
-
-document.querySelector('.among').addEventListener('click', e => {
-	e.preventDefault();
-	among();
-});
