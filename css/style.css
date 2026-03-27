@@ -402,8 +402,8 @@ body.blue-mode {
 }
 
 /* Color change button & dialog */
-.main button.change-color-button {
-  position: absolute;
+button.change-color-button {
+  position: fixed;
   top: 0;
   right: 0;
   margin: 1rem;
@@ -419,12 +419,12 @@ body.blue-mode {
   background: var(--textColor);
   color: var(--bgColor);
   cursor: pointer;
-  z-index: 1001;
+  z-index: 2000;
 }
-.main button.change-color-button:hover {
+button.change-color-button:hover {
   background: var(--boldColor);
 }
-.main dialog.change-color-dialog {
+dialog.change-color-dialog {
   position: fixed;
   top: 0;
   left: 0;
@@ -445,25 +445,25 @@ body.blue-mode {
   pointer-events: none;
   transition: all 0.2s ease;
   display: block;
-  z-index: 1002;
+  z-index: 3000;
 }
-.main dialog.change-color-dialog[open] {
+dialog.change-color-dialog[open] {
   opacity: 1;
   transform: translateY(0%);
   pointer-events: all;
 }
-.main dialog.change-color-dialog h4 {
+dialog.change-color-dialog h4 {
   margin: 0 0 1rem;
   text-align: center;
   font-size: 1.9rem;
   font-weight: 400;
 }
-.main dialog.change-color-dialog form {
+dialog.change-color-dialog form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.main dialog.change-color-dialog form input[type=button], .main dialog.change-color-dialog form input[type=submit] {
+dialog.change-color-dialog form input[type=button], dialog.change-color-dialog form input[type=submit] {
   font: inherit;
   color: inherit;
   padding: 0.5rem 1rem;
@@ -474,22 +474,22 @@ body.blue-mode {
   border-radius: 0.25rem;
   cursor: pointer;
 }
-.main dialog.change-color-dialog form input[type=button]:hover, .main dialog.change-color-dialog form input[type=submit]:hover {
+dialog.change-color-dialog form input[type=button]:hover, dialog.change-color-dialog form input[type=submit]:hover {
   color: var(--boldColor);
 }
-.main dialog.change-color-dialog .radio-buttons {
+dialog.change-color-dialog .radio-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
 }
-.main dialog.change-color-dialog .radio-buttons > div {
+dialog.change-color-dialog .radio-buttons > div {
   margin: 0.5rem 0;
 }
-.main dialog.change-color-dialog .radio-buttons > div input {
+dialog.change-color-dialog .radio-buttons > div input {
   display: none;
 }
-.main dialog.change-color-dialog .radio-buttons > div label div {
+dialog.change-color-dialog .radio-buttons > div label div {
   display: inline-block;
   height: 2rem;
   width: 2rem;
@@ -500,10 +500,10 @@ body.blue-mode {
   border: 0.5rem solid var(--textColor);
   background-clip: padding-box;
 }
-.main dialog.change-color-dialog .radio-buttons > div input:checked + label div {
+dialog.change-color-dialog .radio-buttons > div input:checked + label div {
   border: 0;
 }
-.main dialog.change-color-dialog[open] + button.change-color-button {
+dialog.change-color-dialog[open] ~ button.change-color-button {
   transition: all 0.2s ease;
   opacity: 0;
   pointer-events: none;
