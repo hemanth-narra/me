@@ -1,7 +1,10 @@
 const canvas = document.querySelector('canvas#bg');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+}
+resizeCanvas();
 
 const ctx = canvas.getContext('2d');
 const FILL_STYLES = {
@@ -15,10 +18,7 @@ if(colorMode) {
 	document.body.setAttribute('class', colorMode);
 }
 
-addEventListener('resize', () => {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-});
+addEventListener('resize', resizeCanvas);
 
 function isDarkMode() {
 	return document.body.classList.contains('dark-mode') || 

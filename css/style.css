@@ -216,15 +216,18 @@ body.blue-mode {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  overflow-y: hidden;
 }
 .main > * {
   position: relative;
 }
-.main > canvas#bg {
-  position: absolute;
+canvas#bg {
+  position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 .main .text-container {
   text-align: left;
