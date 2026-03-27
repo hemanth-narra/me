@@ -1,8 +1,9 @@
----
-title: "Automating Net Worth Certificates: How I’m Solving a CA Office Bottleneck"
-summary: I can't believe we’ve been manually drafting these for so long
-time: 1762346400
----
+<!-- title: Automating Net Worth Certificates -->
+<!-- date: 2026-03-27 -->
+<!-- tags: Net Worth, Automation, CA Office, OCR, Workflow -->
+<!-- description: How a self-hosted web app automates Net Worth Certificates in a CA office, saving time and ensuring accuracy. -->
+
+# Automating Net Worth Certificates: How I’m Solving a CA Office Bottleneck
 
 If you’ve worked in a CA office, you know the Net Worth Certificate routine. It’s not hard, but it’s repetitive. The client sends their PAN card, Aadhaar card, and a list of assets—land, gold, bank balances, maybe some liabilities. We open Word, copy-paste from an old template, fill in the numbers, generate a UDIN, print it on the letterhead, sign it, stamp it, scan it, and save it somewhere on the system.
 
