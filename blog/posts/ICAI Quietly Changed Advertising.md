@@ -1,8 +1,9 @@
----
-title: "ICAI Quietly Changed Advertising & Communication Rules: How CAs Can Present Their Work"
-summary: How ICAI’s updated ethics framework finally allows CAs to explain their work publicly
-time: 1767417000
----
+<!-- title: ICAI Quietly Changed Advertising & Communication Rules -->
+<!-- date: 2026-03-27 -->
+<!-- tags: ICAI, Advertising, Ethics, CA Communication -->
+<!-- description: How ICAI’s updated ethics framework finally allows Chartered Accountants to explain their work publicly and communicate clearly online. -->
+
+# ICAI Quietly Changed Advertising & Communication Rules: How CAs Can Present Their Work
 
 If you’ve been practising as a Chartered Accountant for some time, you probably didn’t notice a loud announcement saying “ICAI advertising rules have changed”. There was no dramatic circular or single notification that suddenly made websites, blogs, or LinkedIn posts feel safe.
 
