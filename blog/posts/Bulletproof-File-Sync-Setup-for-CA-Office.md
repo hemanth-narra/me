@@ -1,8 +1,9 @@
----
-title: "Bulletproof File Sync Setup for CA Office: Ditching OneDrive Headaches"
-summary: Works like magic in seconds with syncthing and Tailscale
-time: 1763856000
----
+<!-- title: Bulletproof File Sync Setup for CA Office -->
+<!-- date: 2026-03-27 -->
+<!-- tags: Syncthing, Tailscale, OneDrive, File Sync, CA Office -->
+<!-- description: A step-by-step guide to setting up a fast, reliable, and disaster-proof file sync system for Chartered Accountancy firms using free tools. -->
+
+# Bulletproof File Sync Setup for CA Office
 
 In the world of Chartered Accountancy, the “standard” way to sync files across all laptops and systems is to keep paying for Microsoft 365 and still put up with slow, unreliable OneDrive sync. We faced constant latency, “file in use” conflicts, version mess-ups, and remote staff being completely cut off from the latest client files.
 
