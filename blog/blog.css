@@ -107,8 +107,9 @@
   min-height: 80vh;
 }
 .article-inner {
-  max-width: 48rem;
+  max-width: 60rem;
   margin: 0 auto;
+  padding: 0 3rem;
 }
 
 /* Article Header */
@@ -138,35 +139,36 @@
   color: var(--textColor);
 }
 
-/* Article Content Typography */
+/* Article Content Typography — inspired by prose.nsood.in baseline grid */
 .article-content {
   color: var(--textColor);
-  line-height: 1.8;
-  font-size: 1.05rem;
+  line-height: 1.5rem;
+  font-size: 1.1rem;
 }
 .article-content h1 {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--boldColor);
-  margin: 0 0 1rem;
-  line-height: 1.2;
+  margin: 1.5rem 0 0.75rem;
+  line-height: 3rem;
 }
 .article-content h2 {
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--boldColor);
-  margin: 3rem 0 1rem;
-  line-height: 1.3;
+  margin: 2.25rem 0 1.5rem;
+  line-height: 1.5rem;
 }
 .article-content h3 {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--boldColor);
-  margin: 2rem 0 0.75rem;
-  line-height: 1.3;
+  margin: 1.5rem 0 1.5rem;
+  line-height: 1.5rem;
 }
 .article-content p {
-  margin: 0 0 1.25rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.8;
 }
 .article-content a {
   color: var(--boldColor);
@@ -181,14 +183,15 @@
   font-weight: 700;
 }
 .article-content ul, .article-content ol {
-  margin: 0 0 1.25rem;
+  margin: 1.5rem 0;
   padding-left: 1.5rem;
 }
 .article-content li {
   margin-bottom: 0.5rem;
+  line-height: 1.8;
 }
 .article-content blockquote {
-  border-left: 3px solid var(--boldColor);
+  border-left: 0.2rem solid var(--boldColor);
   margin: 1.5rem 0;
   padding: 0.75rem 1.5rem;
   background: var(--cardBg);
@@ -196,9 +199,10 @@
 }
 .article-content blockquote p {
   margin: 0;
+  line-height: 1.8;
 }
 .article-content code {
-  font-family: 'Courier New', monospace;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
   background: var(--cardBg);
   padding: 0.15rem 0.4rem;
   border-radius: 0.25rem;
@@ -207,16 +211,16 @@
 }
 .article-content pre {
   background: var(--cardBg);
-  border: 1px solid var(--cardBorder);
+  border: 2px solid var(--cardBorder);
   border-radius: 0.5rem;
-  padding: 1.25rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   overflow-x: auto;
-  margin: 1.5rem 0;
+  margin: calc(1.5rem - 2px) 0;
 }
 .article-content pre code {
   background: none;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   line-height: 1.6;
 }
 .article-content table {
@@ -235,8 +239,8 @@
 }
 .article-content hr {
   border: none;
-  border-top: 1px solid var(--cardBorder);
-  margin: 2.5rem 0;
+  border-top: 2px solid var(--cardBorder);
+  margin: calc(3rem - 2px) 1.5rem 1.5rem;
 }
 .article-content img {
   max-width: 100%;
@@ -285,11 +289,18 @@
   .article-section {
     padding: 5rem 1.25rem 3rem;
   }
+  .article-inner {
+    padding: 0 1rem;
+  }
+  .article-content {
+    font-size: 1rem;
+  }
   .article-content h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
   }
   .article-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
