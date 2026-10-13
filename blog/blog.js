@@ -1,37 +1,53 @@
 // ============================================
 // BLOG — Shared JS (Canvas dots + Navbar)
-// No markdown parsing needed — Python handles it!
 // ============================================
 
-// Canvas dots animation
+// Apply saved color mode
+const colorMode = localStorage.getItem('color-mode');
+if (colorMode) {
+	document.body.className = colorMode;
+	document.documentElement.className = colorMode;
+}
+
+// Canvas dots animation (Motion-aware & High-DPI)
 const canvas = document.querySelector('canvas#bg');
 if (canvas) {
-	function resizeCanvas() {
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-	}
-	resizeCanvas();
-	addEventListener('resize', resizeCanvas);
-
 	const ctx = canvas.getContext('2d');
 	const FILL_STYLES = {
 		light: 'rgba(0,0,0,0.05)',
 		dark: 'rgba(255,255,255,0.15)'
 	};
 
+	let width = window.innerWidth;
+	let height = window.innerHeight;
+	let dpr = window.devicePixelRatio || 1;
+
+	function resizeCanvas() {
+		width = window.innerWidth;
+		height = window.innerHeight;
+		dpr = window.devicePixelRatio || 1;
+		canvas.width = width * dpr;
+		canvas.height = height * dpr;
+		canvas.style.width = width + 'px';
+		canvas.style.height = height + 'px';
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+	}
+	resizeCanvas();
+	window.addEventListener('resize', resizeCanvas, { passive: true });
+
 	function isDarkMode() {
-		return document.body.classList.contains('dark-mode') ||
+		return document.documentElement.classList.contains('dark-mode') ||
+			document.body.classList.contains('dark-mode') ||
 			(document.body.classList.length === 0 && matchMedia('(prefers-color-scheme: dark)').matches);
 	}
 
 	function Point() {
 		const r = 8;
-		const initialProgress = -4 * Math.random();
 		this.init = function() {
-			this.progress = initialProgress;
-			this.x = Math.random() * canvas.width;
-			this.y = Math.random() * canvas.height;
-		}
+			this.progress = -4 * Math.random();
+			this.x = Math.random() * width;
+			this.y = Math.random() * height;
+		};
 		this.draw = function() {
 			if (this.progress >= 0) {
 				ctx.fillStyle = isDarkMode() ? FILL_STYLES.dark : FILL_STYLES.light;
@@ -45,7 +61,7 @@ if (canvas) {
 			else this.progress += 0.05;
 			this.draw();
 			if (this.progress >= 1) this.init();
-		}
+		};
 	}
 
 	const dots = [];
@@ -54,17 +70,41 @@ if (canvas) {
 		dots[i].init();
 	}
 
-	(function loop() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		for (let i = 0; i < 20; i++) dots[i].render();
-		requestAnimationFrame(loop);
-	})();
-}
+	let animationFrameId = null;
+	const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-// Apply saved color mode
-const colorMode = localStorage.getItem('color-mode');
-if (colorMode) {
-	document.body.setAttribute('class', colorMode);
+	function loop() {
+		ctx.clearRect(0, 0, width, height);
+		for (let i = 0; i < 20; i++) dots[i].render();
+		animationFrameId = requestAnimationFrame(loop);
+	}
+
+	function startAnimation() {
+		if (!animationFrameId && !reducedMotionQuery.matches && !document.hidden) {
+			animationFrameId = requestAnimationFrame(loop);
+		}
+	}
+
+	function stopAnimation() {
+		if (animationFrameId) {
+			cancelAnimationFrame(animationFrameId);
+			animationFrameId = null;
+		}
+	}
+
+	if (!reducedMotionQuery.matches && !document.hidden) {
+		startAnimation();
+	}
+
+	document.addEventListener('visibilitychange', () => {
+		if (document.hidden) stopAnimation();
+		else startAnimation();
+	});
+
+	reducedMotionQuery.addEventListener('change', (e) => {
+		if (e.matches) stopAnimation();
+		else startAnimation();
+	});
 }
 
 // Navbar scroll
@@ -81,15 +121,35 @@ if (navbar) {
 const menuBtn = document.querySelector('.nav-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 if (menuBtn && navLinks) {
-	menuBtn.addEventListener('click', () => {
-		navLinks.classList.toggle('open');
+	function toggleMenu(forceState) {
+		const isOpen = typeof forceState === 'boolean' ? forceState : !navLinks.classList.contains('open');
+		navLinks.classList.toggle('open', isOpen);
+		menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 		const icon = menuBtn.querySelector('i');
-		icon.className = navLinks.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+		if (icon) {
+			icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+		}
+	}
+
+	menuBtn.addEventListener('click', (e) => {
+		e.stopPropagation();
+		toggleMenu();
 	});
+
 	navLinks.querySelectorAll('a').forEach(link => {
-		link.addEventListener('click', () => {
-			navLinks.classList.remove('open');
-			menuBtn.querySelector('i').className = 'fas fa-bars';
-		});
+		link.addEventListener('click', () => toggleMenu(false));
+	});
+
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+			toggleMenu(false);
+			menuBtn.focus();
+		}
+	});
+
+	document.addEventListener('click', (e) => {
+		if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+			toggleMenu(false);
+		}
 	});
 }

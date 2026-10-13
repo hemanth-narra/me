@@ -60,7 +60,7 @@
 .post-card .post-date {
   font-size: 0.85rem;
   color: var(--textColor);
-  opacity: 0.7;
+  opacity: 0.9;
   margin: 0 0 0.75rem;
 }
 .post-card .post-title {
@@ -120,7 +120,7 @@
 .article-meta .post-date {
   font-size: 0.9rem;
   color: var(--textColor);
-  opacity: 0.7;
+  opacity: 0.9;
   margin: 0 0 0.75rem;
 }
 .article-meta .post-tags {

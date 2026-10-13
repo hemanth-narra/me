@@ -4,7 +4,7 @@ FROM python:3.12-alpine AS builder
 WORKDIR /app
 COPY . .
 
-RUN pip install --no-cache-dir markdown && \
+RUN pip install --no-cache-dir -r requirements.txt && \
     python build.py
 
 # Stage 2: Serve with Nginx

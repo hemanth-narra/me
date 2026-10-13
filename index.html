@@ -6,30 +6,122 @@
 	<title>Hemanth Narra — Tax, Compliance & Business Advisory</title>
 	<meta name="description" content="End-to-end business services — from startup incorporation and government licenses to tax compliance, accounting, and strategic advisory.">
 	<meta name="keywords" content="Income Tax Return, GST Filing, Tally, Accounting, Business Services, Audit, Tax Filing India, Startup Registration, FSSAI, IEC, MSME, ROC Filing, Business Advisory">
-	<meta property="og:url" content="https://hemanthnarra.in">
+	<link rel="canonical" href="https://hemanthnarra.in/">
+	<meta property="og:url" content="https://hemanthnarra.in/">
 	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Hemanth Narra">
+	<meta property="og:locale" content="en_IN">
 	<meta property="og:title" content="Hemanth Narra — Tax, Compliance & Business Advisory">
 	<meta property="og:description" content="End-to-end business services — from startup incorporation and government licenses to tax compliance, accounting, and strategic advisory.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@CAHemanthnarra">
+	<meta name="twitter:creator" content="@CAHemanthnarra">
+	<meta name="twitter:title" content="Hemanth Narra — Tax, Compliance & Business Advisory">
+	<meta name="twitter:description" content="End-to-end business services — from startup incorporation and government licenses to tax compliance, accounting, and strategic advisory.">
 	<link rel="stylesheet" type="text/css" href="fonts/css/nunito.css">
 	<link rel="stylesheet" type="text/css" href="fonts/css/fontawesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="icon" href="fonts/circle_h_icon_199375.ico" type="image/x-icon">
+
+	<!-- Structured Data (JSON-LD) -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "ProfessionalService",
+		"name": "Hemanth Narra — Tax, Compliance & Business Advisory",
+		"url": "https://hemanthnarra.in/",
+		"description": "End-to-end business services from startup incorporation and government licenses to tax compliance, accounting, and strategic advisory.",
+		"founder": {
+			"@type": "Person",
+			"name": "Hemanth Kumar Narra",
+			"jobTitle": "Business & Tax Advisor",
+			"url": "https://hemanthnarra.in/",
+			"sameAs": [
+				"https://x.com/CAHemanthnarra",
+				"https://www.instagram.com/hemanthnarrax/"
+			]
+		},
+		"hasOfferCatalog": {
+			"@type": "OfferCatalog",
+			"name": "Business & Advisory Services",
+			"itemListElement": [
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Startup & Business Formation"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Government Registrations & Licenses"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Funding & Banking"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Accounting & Payroll"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Tax & Compliance"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "International Operations"
+					}
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Advisory & Consulting"
+					}
+				}
+			]
+		}
+	}
+	</script>
+	<script>
+		(function() {
+			try {
+				var mode = localStorage.getItem('color-mode');
+				if (mode) document.documentElement.className = mode;
+			} catch (e) {}
+		})();
+	</script>
 </head>
 <body>
 
-<canvas id="bg"></canvas>
+<canvas id="bg" aria-hidden="true"></canvas>
 
 <!-- Navigation -->
 <nav id="navbar" class="navbar">
 	<div class="nav-inner">
 		<a href="#home" class="nav-logo">Hemanth<span> Narra</span></a>
-		<div class="nav-links">
+		<div id="nav-links" class="nav-links">
 			<a href="#home">Home</a>
 			<a href="#services">Services</a>
 			<a href="blog/index.html">Blog</a>
 			<a href="#contact">Contact</a>
 		</div>
-		<button class="nav-menu-btn" aria-label="Toggle menu">
+		<button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
 			<i class="fas fa-bars"></i>
 		</button>
 	</div>
@@ -46,13 +138,14 @@
 	</div>
 </section>
 
-<dialog class="change-color-dialog">
-	<h4>Pick your vibe 🌈<br> What colour do you want?</h4>
+<dialog class="change-color-dialog" aria-labelledby="color-dialog-title">
+	<h4 id="color-dialog-title">Pick your vibe 🌈<br> What colour do you want?</h4>
 	<form method="dialog">
 		<div class="radio-buttons"></div>
 		<input type="button" value="save" id="color-change-save">
 		<input type="submit" value="exit">
 	</form>
+	<div id="color-save-toast" class="toast-feedback" role="status" aria-live="polite"></div>
 </dialog>
 
 <button class="change-color-button" aria-label="change color">
@@ -62,6 +155,7 @@
 <noscript>
 	<style>
 		button.change-color-button { display: none; }
+		.service-card { opacity: 1 !important; transform: none !important; }
 	</style>
 </noscript>
 
@@ -77,15 +171,15 @@
 
 			<!-- Category 1: Startup & Business Formation -->
 			<div class="service-card" data-category="startup">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-startup">
 					<div class="card-icon">🚀</div>
-					<h3 class="card-title">Startup & Business Formation</h3>
+					<h3 id="card-title-startup" class="card-title">Startup & Business Formation</h3>
 					<p class="card-tagline">From idea to incorporation — we lay the foundation right</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-startup" aria-label="Expand Startup & Business Formation services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-startup" class="card-services" role="region" aria-labelledby="card-title-startup">
 					<ul>
 						<li><strong>Strategic Planning</strong> — Structuring your startup concept from ground up</li>
 						<li><strong>Business Incorporation</strong> — Private Limited, LLP, Firms, Trusts, Societies</li>
@@ -100,15 +194,15 @@
 
 			<!-- Category 2: Government Registrations & Licenses -->
 			<div class="service-card" data-category="licenses">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-licenses">
 					<div class="card-icon">📋</div>
-					<h3 class="card-title">Government Registrations & Licenses</h3>
+					<h3 id="card-title-licenses" class="card-title">Government Registrations & Licenses</h3>
 					<p class="card-tagline">Every permit, every license — sorted and filed</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-licenses" aria-label="Expand Government Registrations & Licenses services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-licenses" class="card-services" role="region" aria-labelledby="card-title-licenses">
 					<ul>
 						<li><strong>DPIIT Recognition</strong> — Startup certification from the government</li>
 						<li><strong>Startup India Portal</strong> — Complete registration assistance</li>
@@ -126,15 +220,15 @@
 
 			<!-- Category 3: Funding & Banking -->
 			<div class="service-card" data-category="funding">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-funding">
 					<div class="card-icon">💰</div>
-					<h3 class="card-title">Funding & Banking</h3>
+					<h3 id="card-title-funding" class="card-title">Funding & Banking</h3>
 					<p class="card-tagline">Capital, credit lines, and government subsidies — unlocked</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-funding" aria-label="Expand Funding & Banking services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-funding" class="card-services" role="region" aria-labelledby="card-title-funding">
 					<ul>
 						<li><strong>Venture Capital Linking</strong> — Connecting you with the right investors</li>
 						<li><strong>MSME Banking</strong> — Specialized credit lines & working capital</li>
@@ -146,15 +240,15 @@
 
 			<!-- Category 4: Accounting & Payroll -->
 			<div class="service-card" data-category="accounting">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-accounting">
 					<div class="card-icon">📊</div>
-					<h3 class="card-title">Accounting & Payroll</h3>
+					<h3 id="card-title-accounting" class="card-title">Accounting & Payroll</h3>
 					<p class="card-tagline">Books balanced, salaries processed, compliance met</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-accounting" aria-label="Expand Accounting & Payroll services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-accounting" class="card-services" role="region" aria-labelledby="card-title-accounting">
 					<ul>
 						<li><strong>Bookkeeping</strong> — Financial recording & digital reconciliation</li>
 						<li><strong>Payroll Processing</strong> — Salary management, attendance tracking, disbursements</li>
@@ -166,15 +260,15 @@
 
 			<!-- Category 5: Tax & Compliance -->
 			<div class="service-card" data-category="tax">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-tax">
 					<div class="card-icon">📑</div>
-					<h3 class="card-title">Tax & Compliance</h3>
+					<h3 id="card-title-tax" class="card-title">Tax & Compliance</h3>
 					<p class="card-tagline">Every return filed, every deadline met — no exceptions</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-tax" aria-label="Expand Tax & Compliance services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-tax" class="card-services" role="region" aria-labelledby="card-title-tax">
 					<ul>
 						<li><strong>Direct Tax</strong> — ITR Filing, TDS Returns, DSC Management</li>
 						<li><strong>Indirect Tax</strong> — GST Registration, Monthly Filing, GSTR 1/3B Returns</li>
@@ -186,15 +280,15 @@
 
 			<!-- Category 6: International Operations -->
 			<div class="service-card" data-category="international">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-international">
 					<div class="card-icon">🌍</div>
-					<h3 class="card-title">International Operations</h3>
+					<h3 id="card-title-international" class="card-title">International Operations</h3>
 					<p class="card-tagline">Cross-border compliance made effortless</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-international" aria-label="Expand International Operations services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-international" class="card-services" role="region" aria-labelledby="card-title-international">
 					<ul>
 						<li><strong>US GAAP Bookkeeping</strong> — American accounting standards handled</li>
 						<li><strong>Federal & State Tax Filings</strong> — US tax compliance</li>
@@ -208,15 +302,15 @@
 
 			<!-- Category 7: Advisory & Consulting -->
 			<div class="service-card" data-category="advisory">
-				<div class="card-header">
+				<div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="card-services-advisory">
 					<div class="card-icon">💡</div>
-					<h3 class="card-title">Advisory & Consulting</h3>
+					<h3 id="card-title-advisory" class="card-title">Advisory & Consulting</h3>
 					<p class="card-tagline">Strategy that drives real outcomes — not just advice</p>
-					<button class="card-toggle" aria-label="Expand services">
+					<button class="card-toggle" aria-expanded="false" aria-controls="card-services-advisory" aria-label="Expand Advisory & Consulting services">
 						<i class="fas fa-chevron-down"></i>
 					</button>
 				</div>
-				<div class="card-services">
+				<div id="card-services-advisory" class="card-services" role="region" aria-labelledby="card-title-advisory">
 					<ul>
 						<li><strong>Outcome-Based Consulting</strong> — Strategies for profit, distribution, export & marketing</li>
 						<li><strong>Personal Finance</strong> — Insurance, Equity, Mutual Fund portfolio guidance</li>
@@ -235,7 +329,7 @@
 		<div class="footer-cta">
 			<h2>Ready to get started?</h2>
 			<p>Let's sort out whatever's on your plate.</p>
-			<a href="https://forms.gle/b6mmNs5mysbTqsaD6" target="_blank" class="footer-btn">Connect Now</a>
+			<a href="https://forms.gle/b6mmNs5mysbTqsaD6" target="_blank" rel="noopener noreferrer" class="footer-btn">Connect Now</a>
 		</div>
 		<div class="footer-links">
 			<div class="footer-col">
@@ -247,10 +341,10 @@
 			<div class="footer-col">
 				<h4>Follow Along</h4>
 				<div class="social-links">
-					<a href="https://www.instagram.com/hemanthnarrax/" target="_blank" aria-label="Instagram">
+					<a href="https://www.instagram.com/hemanthnarrax/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
 						<i class="fab fa-instagram"></i>
 					</a>
-					<a href="https://x.com/HemanthnarraX" target="_blank" aria-label="X (Twitter)">
+					<a href="https://x.com/CAHemanthnarra" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
 						<i class="fab fa-twitter"></i>
 					</a>
 				</div>
@@ -263,6 +357,5 @@
 </footer>
 
 <script src="js/script.js"></script>
-<script src="fonts/attribution.js"></script>
 </body>
 </html>

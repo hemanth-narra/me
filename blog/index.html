@@ -5,39 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog — Hemanth Narra</title>
     <meta name="description" content="Easy-to-digest articles about tax, compliance, business, and personal finance.">
+    <link rel="canonical" href="https://hemanthnarra.in/blog/">
+    <meta property="og:url" content="https://hemanthnarra.in/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog — Hemanth Narra">
+    <meta property="og:description" content="Easy-to-digest articles about tax, compliance, business, and personal finance.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@CAHemanthnarra">
+    <meta name="twitter:creator" content="@CAHemanthnarra">
+    <meta name="twitter:title" content="Blog — Hemanth Narra">
+    <meta name="twitter:description" content="Easy-to-digest articles about tax, compliance, business, and personal finance.">
     <link rel="stylesheet" type="text/css" href="../fonts/css/nunito.css">
     <link rel="stylesheet" type="text/css" href="../fonts/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="blog.css">
     <link rel="icon" href="../fonts/circle_h_icon_199375.ico" type="image/x-icon">
+    <script>
+        (function() {
+            try {
+                var mode = localStorage.getItem('color-mode');
+                if (mode) document.documentElement.className = mode;
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
-<canvas id="bg"></canvas>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+
 <nav id="navbar" class="navbar scrolled">
     <div class="nav-inner">
         <a href="../index.html" class="nav-logo">Hemanth<span> Narra</span></a>
-        <div class="nav-links">
+        <div id="nav-links" class="nav-links">
             <a href="../index.html">Home</a>
             <a href="../index.html#services">Services</a>
             <a href="index.html">Blog</a>
             <a href="../index.html#contact">Contact</a>
         </div>
-        <button class="nav-menu-btn" aria-label="Toggle menu">
+        <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
             <i class="fas fa-bars"></i>
         </button>
     </div>
 </nav>
+
 <section class="blog-section">
     <div class="blog-inner">
         <div class="blog-header">
             <h1>Blog</h1>
             <p>Thoughts on tax, compliance, and building businesses — written simply.</p>
         </div>
+
         <div class="posts-grid">
-            <div class="posts-empty">Run <code>python build.py</code> to generate blog posts from markdown.</div>
+            
+        <a href="icai-quietly-changed-advertising.html" class="post-card visible">
+            <div class="post-date">March 27, 2026</div>
+            <div class="post-title">ICAI Quietly Changed Advertising &amp; Communication Rules</div>
+            <div class="post-description">How ICAI’s updated ethics framework finally allows Chartered Accountants to explain their work publicly and communicate clearly online.</div>
+            <div class="post-tags"><span class="post-tag">ICAI</span><span class="post-tag">Advertising</span><span class="post-tag">Ethics</span><span class="post-tag">CA Communication</span></div>
+        </a>
+
+        <a href="bulletproof-file-sync-setup-for-ca-office.html" class="post-card visible">
+            <div class="post-date">March 27, 2026</div>
+            <div class="post-title">Bulletproof File Sync Setup for CA Office</div>
+            <div class="post-description">A step-by-step guide to setting up a fast, reliable, and disaster-proof file sync system for Chartered Accountancy firms using free tools.</div>
+            <div class="post-tags"><span class="post-tag">Syncthing</span><span class="post-tag">Tailscale</span><span class="post-tag">OneDrive</span><span class="post-tag">File Sync</span><span class="post-tag">CA Office</span></div>
+        </a>
+
+        <a href="automating-net-worth-certificates.html" class="post-card visible">
+            <div class="post-date">March 27, 2026</div>
+            <div class="post-title">Automating Net Worth Certificates</div>
+            <div class="post-description">How a self-hosted web app automates Net Worth Certificates in a CA office, saving time and ensuring accuracy.</div>
+            <div class="post-tags"><span class="post-tag">Net Worth</span><span class="post-tag">Automation</span><span class="post-tag">CA Office</span><span class="post-tag">OCR</span><span class="post-tag">Workflow</span></div>
+        </a>
+
         </div>
     </div>
 </section>
+
+<footer id="contact" class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-cta">
+            <h2>Ready to get started?</h2>
+            <p>Let's sort out whatever's on your plate.</p>
+            <a href="https://forms.gle/b6mmNs5mysbTqsaD6" target="_blank" rel="noopener noreferrer" class="footer-btn">Connect Now</a>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="../index.html">Home</a>
+                <a href="../index.html#services">Services</a>
+                <a href="index.html">Blog</a>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Along</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/hemanthnarrax/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/CAHemanthnarra" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hemanth Narra. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
 <script src="blog.js"></script>
 </body>
 </html>

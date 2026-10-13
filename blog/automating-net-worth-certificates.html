@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automating Net Worth Certificates — Hemanth Narra</title>
+    <meta name="description" content="How a self-hosted web app automates Net Worth Certificates in a CA office, saving time and ensuring accuracy.">
+    <link rel="canonical" href="https://hemanthnarra.in/blog/automating-net-worth-certificates.html">
+    <meta property="og:url" content="https://hemanthnarra.in/blog/automating-net-worth-certificates.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Automating Net Worth Certificates — Hemanth Narra">
+    <meta property="og:description" content="How a self-hosted web app automates Net Worth Certificates in a CA office, saving time and ensuring accuracy.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@CAHemanthnarra">
+    <meta name="twitter:creator" content="@CAHemanthnarra">
+    <meta name="twitter:title" content="Automating Net Worth Certificates — Hemanth Narra">
+    <meta name="twitter:description" content="How a self-hosted web app automates Net Worth Certificates in a CA office, saving time and ensuring accuracy.">
+    <link rel="stylesheet" type="text/css" href="../fonts/css/nunito.css">
+    <link rel="stylesheet" type="text/css" href="../fonts/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="blog.css">
+    <link rel="icon" href="../fonts/circle_h_icon_199375.ico" type="image/x-icon">
+    <script>
+        (function() {
+            try {
+                var mode = localStorage.getItem('color-mode');
+                if (mode) document.documentElement.className = mode;
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<nav id="navbar" class="navbar scrolled">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">Hemanth<span> Narra</span></a>
+        <div id="nav-links" class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#services">Services</a>
+            <a href="index.html">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+        <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<article class="article-section">
+    <div class="article-inner">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Blog</span>
+        </a>
+
+        <div class="article-meta">
+            <div class="post-date">March 27, 2026</div>
+            <div class="post-tags"><span class="post-tag">Net Worth</span><span class="post-tag">Automation</span><span class="post-tag">CA Office</span><span class="post-tag">OCR</span><span class="post-tag">Workflow</span></div>
+        </div>
+
+        <div class="article-content">
+            <h1>Automating Net Worth Certificates: How I’m Solving a CA Office Bottleneck</h1>
+<p>If you’ve worked in a CA office, you know the Net Worth Certificate routine. It’s not hard, but it’s repetitive. The client sends their PAN card, Aadhaar card, and a list of assets—land, gold, bank balances, maybe some liabilities. We open Word, copy-paste from an old template, fill in the numbers, generate a UDIN, print it on the letterhead, sign it, stamp it, scan it, and save it somewhere on the system.</p>
+<p>It works, but it’s fragile. One missed detail, one typo, one misplaced file—and you’re backtracking through folders or redoing the draft.</p>
+<p>So I decided to fix it.</p>
+<h2>The Idea: Let AI Do the Heavy Lifting</h2>
+<p>I wanted a system that could take care of the grunt work. Something that could:</p>
+<ul>
+<li>Read PAN and Aadhaar card screenshots and extract the relevant data  </li>
+<li>Auto-fill a Net Worth Certificate template (the one we use every day)  </li>
+<li>Create a folder for the client and save everything there  </li>
+<li>Let us input asset and liability details through a clean interface  </li>
+<li>Generate the final document on our letterhead  </li>
+<li>Accept the signed scan and archive it back in the same folder  </li>
+</ul>
+<p>Basically, I wanted to turn a 30-minute task into a 3-minute one.
+To make this happen, I built a <strong>self-hosted web app</strong> that runs locally on the system or server we use in the office.</p>
+<h2>OCR for PAN and Aadhaar</h2>
+<p>The first bottleneck was data entry. Every time a client sends a PAN or Aadhaar screenshot, someone has to manually type in the name, PAN number, and address. So the self-hosted web app has a built-in OCR functionality—so when we upload a PAN or Aadhaar card screenshot, it instantly extracts the relevant data like name, PAN number, and address without any manual typing.</p>
+<p>No more typos. No more back-and-forth.</p>
+<h2>Auto-Folder Creation</h2>
+<p>Once the PAN is read, the web app creates a folder structure like this in the system or server it is hosted:</p>
+<pre><code>Desktop/
+└── Clients/
+    └── Networth Certificates/
+        └── [Client Name extracted from PAN]/
+</code></pre>
+<p>This becomes the client’s vault—everything related to them goes here. Drafts, final documents, signed scans, even future certificates.</p>
+<h2>Asset and Liability Entry Interface</h2>
+<p>The web app includes a clean, browser-based form for entering asset and liability details. We simply open the app in the browser pop-up window and fill out the form directly—no need for external tools or manual Word editing.</p>
+<p>Here’s how the form works:</p>
+<ul>
+<li>
+<p><strong>Categorized Sections</strong>: The form is divided into logical sections—Immovable Assets, Movable Assets, Bank Balances, and Liabilities. Each section has its own input fields for descriptions and values.</p>
+</li>
+<li>
+<p><strong>Dynamic Entry Support</strong>: You can add multiple entries under each category. For example, if a client owns two plots of land or has three bank accounts, you can add each one separately. The form dynamically expands to accommodate them.</p>
+</li>
+<li>
+<p><strong>Real-Time Calculations</strong>: As you enter values, the form automatically calculates totals for each section. It also computes the overall Total Assets, Total Liabilities, and Net Worth in real time.</p>
+</li>
+<li>
+<p><strong>Validation and Formatting</strong>: The form ensures that all numeric fields are properly formatted (e.g., ₹XX,XX,XXX.00) and checks for missing or invalid entries before allowing you to proceed.</p>
+</li>
+</ul>
+<p>This form replaces the need for spreadsheets, calculators, and manual Word templates. It’s fast, accurate, and consistent—especially helpful when handling multiple clients in a day.</p>
+<h2>Template Integration</h2>
+<p>Once the form is complete, the app uses the data to generate a Net Worth Certificate in our standard format. It includes the client’s name, PAN, address, asset breakdown, liabilities, and net worth summary.</p>
+<p>Here’s the full format it uses:</p>
+<hr />
+<h3>NETWORTH STATEMENT</h3>
+<p>This is to certify that the Net Worth of <strong>[Name extracted from PAN]</strong>,<br />
+bearing PAN Number <strong>[PAN extracted from PAN card]</strong>,<br />
+residing at <strong>[Address extracted from Aadhaar]</strong>,<br />
+as on <strong>[Date selected in form]</strong>, is as follows:</p>
+<h4>Immovable Properties in India</h4>
+<table>
+<thead>
+<tr>
+<th>S. No</th>
+<th>Particulars</th>
+<th>Amount (Rs.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[Land/Building details with market value]</td>
+<td>₹XX,XX,XXX.00</td>
+</tr>
+</tbody>
+</table>
+<h4>Movable Properties in India</h4>
+<table>
+<thead>
+<tr>
+<th>S. No</th>
+<th>Particulars</th>
+<th>Amount (Rs.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>[Gold, vehicles, etc.]</td>
+<td>₹XX,XX,XXX.00</td>
+</tr>
+</tbody>
+</table>
+<h4>Cash and Bank Balances</h4>
+<table>
+<thead>
+<tr>
+<th>S. No</th>
+<th>Particulars</th>
+<th>Amount (Rs.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>[Bank balances, cash on hand]</td>
+<td>₹XX,XXX.00</td>
+</tr>
+</tbody>
+</table>
+<h4>Liabilities</h4>
+<table>
+<thead>
+<tr>
+<th>S. No</th>
+<th>Particulars</th>
+<th>Amount (Rs.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>[Loans, credit card dues, etc.]</td>
+<td>₹XX,XX,XXX.00</td>
+</tr>
+</tbody>
+</table>
+<h4>Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Assets</td>
+<td>₹XX,XX,XXX.00</td>
+</tr>
+<tr>
+<td>Total Liabilities</td>
+<td>₹XX,XX,XXX.00</td>
+</tr>
+<tr>
+<td>Net Worth</td>
+<td>₹XX,XX,XXX.00</td>
+</tr>
+</tbody>
+</table>
+<p>The above information is based on documentary evidence and declarations provided by the client.</p>
+<p>For [CA Firm Name]<br />
+Chartered Accountants<br />
+Firm Reg No. [Auto-filled]<br />
+UDIN: [Entered manually]<br />
+Date: [Auto-filled]<br />
+Place: [Auto-filled]</p>
+<hr />
+<h2>UDIN Entry</h2>
+<p>Unfortunately, ICAI doesn’t provide any API for UDIN generation. So we still have to generate it manually from the ICAI portal. Once done, we enter it into the web app, and it embeds the UDIN into the final certificate.</p>
+<h2>Export Options</h2>
+<p>The certificate is rendered as a PDF or Word file, ready to be printed on the firm’s letterhead. You can also save it directly to the client’s folder created earlier.</p>
+<h2>Upload Signed Copy and Supporting Docs</h2>
+<p>After printing the certificate on the firm’s letterhead and signing/stamping it, we scan the document and upload it back into the app. It reads the content to confirm it matches the draft and saves it in the correct client folder.</p>
+<p>There’s also an option to upload other supporting files—like title deeds, valuation proofs, or screenshots sent by the client. Everything stays bundled together.</p>
+<h2>Why This Works</h2>
+<p>It’s not just about saving time. It’s about consistency, accuracy, and scalability. Whether you’re handling 5 clients or 500, the workflow stays the same. And because it’s self-hosted, client data stays secure.</p>
+<p>This system doesn’t replace the CA’s judgment—it just removes the friction.</p>
+<p>I'll make the web app code public in a few days, open-sourcing it for anyone to adapt and improve. Stay tuned!</p>
+        </div>
+    </div>
+</article>
+
+<footer id="contact" class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-cta">
+            <h2>Ready to get started?</h2>
+            <p>Let's sort out whatever's on your plate.</p>
+            <a href="https://forms.gle/b6mmNs5mysbTqsaD6" target="_blank" rel="noopener noreferrer" class="footer-btn">Connect Now</a>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="../index.html">Home</a>
+                <a href="../index.html#services">Services</a>
+                <a href="index.html">Blog</a>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Along</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/hemanthnarrax/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/CAHemanthnarra" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hemanth Narra. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="blog.js"></script>
+</body>
+</html>

@@ -27,7 +27,7 @@ To make this happen, I built a **self-hosted web app** that runs locally on the 
 
 ## OCR for PAN and Aadhaar
 
-The first bottleneck was data entry. Every time a client sends a PAN or Aadhaar screenshot, someone has to manually type in the name, PAN number, and address. So the self-hosted web app has a bullt-in OCR functionality—so when we upload a PAN or Aadhaar card screenshot, it instantly extracts the relevant data like name, PAN number, and address without any manual typing.
+The first bottleneck was data entry. Every time a client sends a PAN or Aadhaar screenshot, someone has to manually type in the name, PAN number, and address. So the self-hosted web app has a built-in OCR functionality—so when we upload a PAN or Aadhaar card screenshot, it instantly extracts the relevant data like name, PAN number, and address without any manual typing.
 
 No more typos. No more back-and-forth.
 
