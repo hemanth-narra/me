@@ -2,21 +2,10 @@
 // BLOG — Shared JS (Canvas dots + Navbar)
 // ============================================
 
-// Apply saved color mode
-const colorMode = localStorage.getItem('color-mode');
-if (colorMode) {
-	document.body.className = colorMode;
-	document.documentElement.className = colorMode;
-}
-
 // Canvas dots animation (Motion-aware & High-DPI)
 const canvas = document.querySelector('canvas#bg');
 if (canvas) {
 	const ctx = canvas.getContext('2d');
-	const FILL_STYLES = {
-		light: 'rgba(0,0,0,0.05)',
-		dark: 'rgba(255,255,255,0.15)'
-	};
 
 	let width = window.innerWidth;
 	let height = window.innerHeight;
@@ -35,12 +24,6 @@ if (canvas) {
 	resizeCanvas();
 	window.addEventListener('resize', resizeCanvas, { passive: true });
 
-	function isDarkMode() {
-		return document.documentElement.classList.contains('dark-mode') ||
-			document.body.classList.contains('dark-mode') ||
-			(document.body.classList.length === 0 && matchMedia('(prefers-color-scheme: dark)').matches);
-	}
-
 	function Point() {
 		const r = 8;
 		this.init = function() {
@@ -50,7 +33,7 @@ if (canvas) {
 		};
 		this.draw = function() {
 			if (this.progress >= 0) {
-				ctx.fillStyle = isDarkMode() ? FILL_STYLES.dark : FILL_STYLES.light;
+				ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
 				ctx.beginPath();
 				ctx.arc(this.x, this.y, Math.abs(Math.sin(Math.PI * this.progress) * r), 0, 2 * Math.PI);
 				ctx.fill();

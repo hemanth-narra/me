@@ -98,14 +98,6 @@
 		}
 	}
 	</script>
-	<script>
-		(function() {
-			try {
-				var mode = localStorage.getItem('color-mode');
-				if (mode) document.documentElement.className = mode;
-			} catch (e) {}
-		})();
-	</script>
 </head>
 <body>
 
@@ -138,28 +130,11 @@
 	</div>
 </section>
 
-<dialog class="change-color-dialog" aria-labelledby="color-dialog-title">
-	<h4 id="color-dialog-title">Pick your vibe 🌈<br> What colour do you want?</h4>
-	<form method="dialog">
-		<div class="radio-buttons"></div>
-		<input type="button" value="save" id="color-change-save">
-		<input type="submit" value="exit">
-	</form>
-	<div id="color-save-toast" class="toast-feedback" role="status" aria-live="polite"></div>
-</dialog>
-
-<button class="change-color-button" aria-label="change color">
-	<i class="fas fa-paint-brush"></i>
-</button>
-
 <noscript>
 	<style>
-		button.change-color-button { display: none; }
 		.service-card { opacity: 1 !important; transform: none !important; }
 	</style>
 </noscript>
-
-<div class="clapper" aria-hidden="true">👏 Less chaos. More clarity.</div>
 
 <!-- Services Catalogue -->
 <section id="services" class="services-section">

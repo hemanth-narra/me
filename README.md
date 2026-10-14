@@ -10,7 +10,7 @@ Built with vanilla HTML5, CSS3, JavaScript, a Python-powered Markdown blog gener
 
 - **Services Catalogue:** Categorized, keyboard-navigable interactive accordions with full ARIA semantics.
 - **Static Markdown Blog:** Python builder (`build.py`) converting Markdown posts into static HTML articles with clean kebab-case slugs, OpenGraph metadata, and automated `sitemap.xml` generation.
-- **Design & Themes:** Dark mode, light mode, and curated color palettes with WCAG 2.1 AA compliant contrast ratios.
+- **Design & Theme:** Sleek, fixed black/dark theme with WCAG 2.1 AA compliant contrast ratios.
 - **Motion-Aware Canvas:** Particle animation loop that respects `prefers-reduced-motion` and pauses when tab is backgrounded.
 - **SEO & Structured Data:** OpenGraph, Twitter Card summary tags, canonical links, `robots.txt`, XML sitemap, and Schema.org JSON-LD structured data.
 
@@ -176,7 +176,7 @@ The script will generate the HTML page, format publish dates, escape metadata at
 │   └── style.scss       # SCSS source stylesheet
 ├── fonts/               # Webfonts (Nunito, FontAwesome) and favicon
 └── js/
-    └── script.js        # Main interactivity, canvas, accordions, theme dialog
+    └── script.js        # Main interactivity, canvas, accordions
 ```
 
 ---

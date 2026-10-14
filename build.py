@@ -124,14 +124,6 @@ def get_head(title, description="", og_type="website", page_url=None):
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="blog.css">
     <link rel="icon" href="../fonts/circle_h_icon_199375.ico" type="image/x-icon">
-    <script>
-        (function() {{
-            try {{
-                var mode = localStorage.getItem('color-mode');
-                if (mode) document.documentElement.className = mode;
-            }} catch (e) {{}}
-        }})();
-    </script>
 </head>
 <body>
 
