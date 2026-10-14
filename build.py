@@ -139,6 +139,7 @@ def get_navbar():
         <div id="nav-links" class="nav-links">
             <a href="../index.html">Home</a>
             <a href="../index.html#services">Services</a>
+            <a href="../nri-property-sale-checker/">NRI Tax Tool</a>
             <a href="index.html">Blog</a>
             <a href="../index.html#contact">Contact</a>
         </div>
@@ -164,6 +165,7 @@ def get_footer():
                 <h4>Quick Links</h4>
                 <a href="../index.html">Home</a>
                 <a href="../index.html#services">Services</a>
+                <a href="../nri-property-sale-checker/">NRI Property Sale Checker</a>
                 <a href="index.html">Blog</a>
             </div>
             <div class="footer-col">
@@ -297,6 +299,11 @@ def generate_sitemap(posts):
         f'    <loc>{SITE_URL}/blog/</loc>',
         '    <changefreq>daily</changefreq>',
         '    <priority>0.8</priority>',
+        '  </url>',
+        '  <url>',
+        f'    <loc>{SITE_URL}/nri-property-sale-checker/</loc>',
+        '    <changefreq>monthly</changefreq>',
+        '    <priority>0.9</priority>',
         '  </url>',
     ]
 
